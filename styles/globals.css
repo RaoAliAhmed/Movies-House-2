@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
-:root {
+:root,
+.light-mode {
   --background: #ffffff;
   --foreground: #171717;
+  --card-bg: #ffffff;
+  --card-text: #171717;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --nav-bg: #ffffff;
+  --border-color: #e5e7eb;
 }
 
 @theme inline {
@@ -12,15 +19,52 @@
   --font-mono: var(--font-geist-mono);
 }
 
+.dark-mode {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --card-bg: #1a1a1a;
+  --card-text: #ededed;
+  --primary: #60a5fa;
+  --primary-hover: #3b82f6;
+  --nav-bg: #111111;
+  --border-color: #374151;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.light-mode) {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --card-bg: #1a1a1a;
+    --card-text: #ededed;
+    --nav-bg: #111111;
+    --border-color: #374151;
   }
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  background-color: var(--card-bg);
+  color: var(--card-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+nav {
+  background-color: var(--nav-bg) !important;
+  border-bottom: 1px solid var(--border-color);
+}
+
+select, input {
+  background-color: var(--card-bg) !important;
+  color: var(--card-text) !important;
+  border-color: var(--border-color) !important;
 }
